@@ -1,0 +1,22 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "description": "Full-stack Task Management Application with React, Tailwind CSS, Node.js, and Express",
+  "scripts": {
+    "start": "node backend/server.js",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "test": "cd backend && npm test",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "task-management",
+    "react",
+    "tailwind",
+    "express",
+    "sqlite",
+    "kanban"
+  ],
+  "author": "OpenHands Multi-Agent Team",
+  "license": "MIT"
+}
