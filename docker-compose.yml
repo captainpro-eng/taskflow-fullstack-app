@@ -1,0 +1,33 @@
+services:
+  taskflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: taskflow:1.0.0
+    container_name: taskflow_app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-5001}:5001"
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+      - DB_PATH=/app/backend/data/taskflow.db
+    volumes:
+      - taskflow_data:/app/backend/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5001/api/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  taskflow_data:
+    name: taskflow_sqlite_data
+    driver: local
